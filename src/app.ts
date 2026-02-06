@@ -8,9 +8,10 @@ import userRouter from "./api/routes/users.route"
 
 const app = express()
 
-app.use(helmet)
-app.use(ExpressMongoSanitize)
+app.use(helmet())
 app.use(express.json())
+app.use(ExpressMongoSanitize())
+
 
 app.use("/api/orders", orderRouter)
 app.use("/api/products", productRouter)

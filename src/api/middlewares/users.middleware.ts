@@ -38,7 +38,7 @@ export const validateUserMongoId = (req: Request, res: Response, next: NextFunct
 export const isSuperAdmin = (req : AuthRequest,res : Response,next: NextFunction) => {
   if (!req.user) throw new ApiError("we didn't found user pyload",404) 
   const {role} = req.user
-  if (role !== "Super Admin") throw new ApiError("permissions denied",403)
+  if (role !== "super_admin") throw new ApiError("permissions denied",403)
   next()
 
 }
@@ -46,6 +46,6 @@ export const isSuperAdmin = (req : AuthRequest,res : Response,next: NextFunction
 export const isHaveAccess = (req : AuthRequest,res : Response,next: NextFunction) => {
   if (!req.user) throw new ApiError("we didn't found user pyload",404) 
     const {role} = req.user
-    if (role !== "super admin" && role !== "admin") throw new ApiError("permissions denied",403)
+    if (role !== "super_admin" && role !== "admin") throw new ApiError("permissions denied",403)
     next()
 }

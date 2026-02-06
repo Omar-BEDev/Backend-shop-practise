@@ -17,7 +17,7 @@ export const createUser = async (userData: IUser) => {
   return newUser;
 };
 
-export const createJwtToken = (userId: mongoose.Types.ObjectId, role: string) => {
+export const createJwtToken = (userId: string, role: string) => {
   const secret = process.env.JWT_SECRET;
   const token = jwt.sign(
     { id: userId, role }, 
