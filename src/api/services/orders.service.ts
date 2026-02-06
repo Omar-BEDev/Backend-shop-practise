@@ -83,7 +83,7 @@ export const cancelOrder = async (orderId: string, id : string) => {
   if (!order) {
     throw new ApiError('Order not found', 404);
   }
-  if (Types.ObjectId.isValid(id)) throw new ApiError("invalid user id",400)
+  if (!Types.ObjectId.isValid(id)) throw new ApiError("invalid user id",400)
     const userId = new ObjectId(id)
   if (order.userId !== userId){
     throw new ApiError("permissions denied",403)
@@ -128,13 +128,22 @@ export const pendingOrder = async (orderId: string, productId: string, quantity:
 };
 
 export const getOrders = async (userId : string) => {
-  if (Types.ObjectId.isValid(userId)) throw new ApiError("invalid user id",400)
+  if (!Types.ObjectId.isValid(userId)) throw new ApiError("invalid user id",400)
   
   const orders = await Order.find({userId : userId});
   return orders;
 };
 export const getAllOrders = async () => {
   const orders = await Order.find()
-  const numOfOrders = orders.length
-  const numOfOrdersCompleted = orders.filter(order => order.status === "completed" )
+  .sort{createdAt : -1},
+  .limit(50),
+  .lean()
+  
+  const numOfOrders = await Order.countDocuments()
+  const numOfOrdersCompleted = await Order.countDocuments({status: "completed"})
+  return {
+    orders : orders,
+    numOforders : numOfOrders,
+    numOfOrdersCompleted : numOfOrdersCompleted
+  }
 }
