@@ -5,6 +5,7 @@ import {
   cancelOrder,
   pendingOrder,
   getOrders,
+  getAllOrders
 } from '../services/orders.service';
 import { ApiError } from '../utils/ApiError';
 import { catchAsync } from '../utils/catchAsync';
@@ -50,3 +51,4 @@ export const updateOrder = catchAsync(async (req: AuthRequest, res: Response, ne
   res.status(200).json(order);
 });
 
+export const getAdminAllOrders = catchAsync(async (req,res,next))
