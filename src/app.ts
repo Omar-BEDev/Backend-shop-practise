@@ -5,7 +5,11 @@ import ExpressMongoSanitize from "express-mongo-sanitize"
 import orderRouter from "./api/routes/orders.route"
 import productRouter from "./api/routes/products.route"
 import userRouter from "./api/routes/users.route"
+import swaggerui from "swagger-ui-express"
+import swaggerDocument from "./docs/swagger.json"
 import cors from "cors"
+import { authToken } from "./api/middlewares/auth.middeleware"
+import { isSuperAdmin } from "./api/middlewares/users.middleware"
 const app = express()
 
 app.use(helmet())
@@ -20,7 +24,7 @@ app.use(cors({
 app.use("/api/orders", orderRouter)
 app.use("/api/products", productRouter)
 app.use("/api/users",userRouter)
-
+app.use("/docs",authToken,isSuperAdmin,swaggerui.serve,swaggerui.setup(swaggerDocument))
 app.use(handleErrors)
 
 export default app
