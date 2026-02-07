@@ -9,7 +9,6 @@ const orderSchema = z.object({
       z.object({
         productId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val)),
         name: z.string(),
-        price: z.number().positive(),
         quantity: z.number().positive(),
       })
     ),
