@@ -11,7 +11,7 @@ const productSchema = z.object({
   stock: z.number(),
   images: z.array(z.string()).optional(),
   category: z.string(),
-  sku: z.string(),
+   
 });
 
 // Zod schema for query params validation
