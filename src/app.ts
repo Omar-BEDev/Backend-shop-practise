@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(ExpressMongoSanitize())
 
 app.use(cors({
-  origin : "https://hoppscotch.io", 
+  origin : "https://ecopr.lovable.app", 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
