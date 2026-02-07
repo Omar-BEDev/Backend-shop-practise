@@ -12,7 +12,11 @@ app.use(helmet())
 app.use(express.json())
 app.use(ExpressMongoSanitize())
 
-app.use(cors())
+app.use(cors({
+  origin : "https://hoppscotch.io", 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use("/api/orders", orderRouter)
 app.use("/api/products", productRouter)
 app.use("/api/users",userRouter)
