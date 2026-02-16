@@ -1,4 +1,4 @@
-# Eco Storefront API - Advanced E-commerce Backend
+# Eco Storefront API - Simple E-commerce Backend
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
